@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const user = require('../models/user');
+const User = require('../models/user');
 
 // Register Route
 router.get('/register', function(req, res){
