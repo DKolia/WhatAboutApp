@@ -1,0 +1,34 @@
+{
+  "name": "whataboutapp",
+  "version": "1.0.0",
+  "description": "The Easy Social-Media Profile Reference Tool",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DKolia/WhatAboutApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "1.4.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/DKolia/WhatAboutApp/issues"
+  },
+  "homepage": "https://github.com/DKolia/WhatAboutApp#readme"
+}
