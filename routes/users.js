@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const User = require('../models/user');
 
 // Register Route
 router.get('/register', function(req, res){
@@ -64,76 +64,50 @@ router.post('/register', function(req, res){
    }
 });
 
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.getUserByUsername(username, function(err, user){
-//       if(err) throw err;
-//       if (!user){
-//         return done(null, false, { message: "Unknown User" });
-//       }
-//       console.log("This is user :" + user);
-//       console.log("This is password: " + password);
-//       console.log("This is userDOTpassword: " + user.password);
-//
-//       User.comparePassword(password, user.password, function(err, isMatch){
-//         if(err) throw err;
-//         if(isMatch){
-//           return done(null, user);
-//         } else {
-//           return done(null, false, { message: "Invalid Password" });
-//         }
-//       });
-//     });
-//   }));
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.getUserByUsername(username, function(err, user){
+      if(err) throw err;
+      if (!user){
+        return done(null, false, { message: "Unknown User" });
+      }
+      console.log("This is user :" + user);
+      console.log("This is password: " + password);
+      console.log("This is userDOTpassword: " + user.password);
 
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({username: username}, function(err, user){
-         if(err) throw err;
-         if (!user){
-           return done(null, false, { message: "Unknown User" });
-         }
-         console.log("this is password");
-         console.log(password);
-         console.log("this is user.password");
-         console.log(user.password);
-         User.comparePassword(password, user.password, function(err, isMatch){
-           if(err) throw err;
-           if(isMatch){
-             console.log("getting to line 103");
-             return done(null, user);
-           } else {
-             console.log("getting to line 106");
-             return done(null, false, { message: "Invalid Password" });
-           }
-         });
-       });
-    }));
-
-
-
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
-
-  // passport.deserializeUser(function(id, done) {
-  //   User.getUserById(id, function(err, user) {
-  //     done(err, user);
-  //   });
-  // });
-
-  passport.deserializeUser(function(id, done) {
-    User.findOne({id: id}, function(err, user) {
-      done(err, user);
+      User.comparePassword(password, user.password, function(err, isMatch){
+        if(err) throw err;
+        if(isMatch){
+          return done(null, user);
+        } else {
+          return done(null, false, { message: "Invalid Password" });
+        }
+      });
     });
-  });
+  }));
 
 
+
+    passport.serializeUser(function (user, done) {
+      done(null, user.id);
+    });
+
+    // passport.deserializeUser(function (id, done) {
+    //   User.findOne({id: id}, function (err, user) {
+    //     done(err, user);
+    //   });
+    // });
+
+    passport.deserializeUser(function (id, done) {
+    	User.getUserById(id, function (err, user) {
+    		done(err, user);
+    	});
+    });
 
 
 router.post(
   '/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect: '/users/login', failureFlash: true}),
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
   function(req, res) {
     console.log("WORKING");
     console.log(req.user);
