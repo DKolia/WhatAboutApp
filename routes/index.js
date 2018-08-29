@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 
-// Gets homepage
+// Gets User Dashbaord page, must be logged in to see/access
 router.get('/', ensureAuthenticated, function(req, res){
   res.render('index');
 });
 
-// Gets packages
+// Gets Uesr Packages page, must be logged in to see/access
 router.get('/users/package', ensureAuthenticated, function(req, res){
   res.render('package');
 });

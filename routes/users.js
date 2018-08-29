@@ -6,32 +6,71 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
+router.use(methodOverride('_method'))
+// [ ] UPDATE route
+// [ ] router.put()
+// [ ] user data will be in req.bod
+// [X] once you get method-override set up correctly
+// [X] see npm.org / method-override
 
-// UPDATE route
-// router.put()
-// user data will be in req.bod
-// once you get method-override set up correctly
-// see npm.org / method-override
+
+
+///// UPDATE ROUTE ////////////////////////////////////
+// Where is PassportJS storing userID
+//
+// Update User
+// router.put("/:id", async (req, res) => {
+// const updatedUser = await Users.findByIdAndUpdate(req.params.id, req.body, {new: true});
+// res.redirect("/user");
+// });
+//
+// Update Package Route
+// router.put('/something', function(req, res){
+//
+//   req.body.
+//   edit;
+//   {key}:{value}
+// });
+
+
+//////////////////////////////////////////////////////
 
 // EDIT route
   // grab shit from db
   // render an EJS that looks exactly like index.ejs, passing the data from db to that template
 
-// delete route
-  // this route will be hit by your form with just a single f***ing butoon
-
-
-
-// Update Package Route
-router.put('/something', function(req, res){
-
-});
-
-// Show Package Route
+// // Show Package Route
 // router.edit('/something', function(req, res){
 //   something
 // })
 
+
+////////// DELETE ROUTE //////////////////
+// DETLETE ROUTE NEEDS
+// [X] Find PassportJS's location for IDs
+// [ ] MongoDB Query to Delete based on ID
+//
+// router.delete('/', (req, res) => {
+//   console.log("below is req.session.passports.user");
+//   console.log(req.session.passport.user);
+//   res.send("hello this is delete speaking, check the terminal")
+// })
+
+  // console.log(req.session.passport.user);
+
+// Delete User
+router.delete("/", async (req, res) => {
+  const deletedUser = await User.findByIdAndRemove(req.session.passport.user);
+  res.redirect("/");
+});
+
+// router.delete("/", function(req, res){
+//   const deletedUser = User.findByIdAndRemove(req.session.passport.user, function(asdf, asdf2){
+//     console.log(asdf);
+//     console.log(asdf2);
+//   });
+//   res.redirect("/");
+// })
 
 
 // Register Route
@@ -140,24 +179,6 @@ router.get('/logout', function(req, res){
   req.flash('success_msg', "You are now logged out.");
   res.redirect("/users/login");
 });
-
-
-//////
-// Gets packages
-router.get('/package', ensureAuthenticated, function(req, res){
-  res.render('package');
-});
-
-
-// Checks Authentication to avoid unauthorized access through URL manipulation
-function ensureAuthenticated(req, res, next){
-  if (req.isAuthenticated()){
-    return next();
-  } else {
-    req.flash('error_msg', 'You are not logged in');
-    res.redirect('/users/login');
-  }
-}
 
 
 module.exports = router;

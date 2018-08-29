@@ -25,6 +25,7 @@
     "method-override": "^3.0.0",
     "mongodb": "*",
     "mongoose": "*",
+    "nodemon": "^1.18.4",
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*"
