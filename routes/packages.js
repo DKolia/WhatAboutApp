@@ -2,13 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 
-// Gets homepage
-router.get('/', ensureAuthenticated, function(req, res){
-  res.render('index');
-});
-
 // Gets packages
-router.get('/users/package', ensureAuthenticated, function(req, res){
+router.get('/package', ensureAuthenticated, function(req, res){
   res.render('package');
 });
 

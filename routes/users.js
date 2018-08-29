@@ -1,8 +1,38 @@
 const express = require('express');
+const methodOverride = require('method-override')
+const app = express()
 const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
+
+
+// UPDATE route
+// router.put()
+// user data will be in req.bod
+// once you get method-override set up correctly
+// see npm.org / method-override
+
+// EDIT route
+  // grab shit from db
+  // render an EJS that looks exactly like index.ejs, passing the data from db to that template
+
+// delete route
+  // this route will be hit by your form with just a single f***ing butoon
+
+
+
+// Update Package Route
+router.put('/something', function(req, res){
+
+});
+
+// Show Package Route
+// router.edit('/something', function(req, res){
+//   something
+// })
+
+
 
 // Register Route
 router.get('/register', function(req, res){
@@ -110,6 +140,24 @@ router.get('/logout', function(req, res){
   req.flash('success_msg', "You are now logged out.");
   res.redirect("/users/login");
 });
+
+
+//////
+// Gets packages
+router.get('/package', ensureAuthenticated, function(req, res){
+  res.render('package');
+});
+
+
+// Checks Authentication to avoid unauthorized access through URL manipulation
+function ensureAuthenticated(req, res, next){
+  if (req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('error_msg', 'You are not logged in');
+    res.redirect('/users/login');
+  }
+}
 
 
 module.exports = router;
