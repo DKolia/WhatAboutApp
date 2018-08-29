@@ -17,47 +17,47 @@ const UserScema = mongoose.Schema({
   },
   name: {
     type: String
-  }
-  facebook:{
+  },
+  facebook: {
     type: String
-  }
-  twitter:{
+  },
+  twitter: {
     type: String
-  }
-  instagram:{
+  },
+  instagram: {
     type: String
-  }
-  youtube:{
+  },
+  youtube: {
     type: String
-  }
-  linkedin:{
+  },
+  linkedin: {
     type: String
-  }
-  googleplus:{
+  },
+  googleplus: {
     type: String
-  }
-  pinterest:{
+  },
+  pinterest: {
     type: String
-  }
-  tumblr:{
+  },
+  tumblr: {
     type: String
-  }
-  snapchat:{
+  },
+  snapchat: {
     type: String
-  }
-  reddit:{
+  },
+  reddit: {
     type: String
-  }
-  flickr:{
+  },
+  flickr: {
     type: String
-  }
-  misc1:{
+  },
+  misc1: {
     type: String
-  }
-  misc2:{
+  },
+  misc2: {
     type: String
-  }
-  misc3r:{
+  },
+  misc3r: {
     type: String
   }
 });
