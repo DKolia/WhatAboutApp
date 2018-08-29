@@ -23,8 +23,7 @@ router.post('/register', function(req, res){
    const username = req.body.username;
    const password = req.body.password;
    const password2 = req.body.password2;
-   console.log("this is req.body @ 26");
-   console.log(req.body);
+
 
    // User Validation
    req.checkBody('name', 'Name is required').notEmpty();
@@ -33,8 +32,6 @@ router.post('/register', function(req, res){
    req.checkBody('username', 'Username is required').notEmpty();
    req.checkBody('password', 'A Password is required').notEmpty();
    req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-  console.log("this is req.body @ 35");
-  console.log(req.body);
 
    const errors = req.validationErrors();
 
@@ -43,8 +40,6 @@ router.post('/register', function(req, res){
        errors: errors
      });
    } else {
-     console.log("this is req.body @ 44");
-     console.log(req.body);
      const newUser = new User({
        name: name,
        email: email,
@@ -54,11 +49,8 @@ router.post('/register', function(req, res){
 
      User.createUser(newUser, function(err, user){
        if(err) throw err;
-       console.log(user);
      });
      req.flash("success_msg", "You are registered and can now log in");
-     console.log("this is req.body @ 57");
-     console.log(req.body);
 
      res.redirect('/users/login');
    }
@@ -71,9 +63,6 @@ passport.use(new LocalStrategy(
       if (!user){
         return done(null, false, { message: "Unknown User" });
       }
-      console.log("This is user :" + user);
-      console.log("This is password: " + password);
-      console.log("This is userDOTpassword: " + user.password);
 
       User.comparePassword(password, user.password, function(err, isMatch){
         if(err) throw err;
@@ -92,11 +81,7 @@ passport.use(new LocalStrategy(
       done(null, user.id);
     });
 
-    // passport.deserializeUser(function (id, done) {
-    //   User.findOne({id: id}, function (err, user) {
-    //     done(err, user);
-    //   });
-    // });
+
 
     passport.deserializeUser(function (id, done) {
     	User.getUserById(id, function (err, user) {
@@ -109,11 +94,9 @@ router.post(
   '/login',
   passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
   function(req, res) {
-    console.log("WORKING");
-    console.log(req.user);
     res.redirect('/');
   }
-  // (req, res) => { console.log(req.body); res.send("check the terminal")}
+
 );
 
 router.get('/logout', function(req, res){

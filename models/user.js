@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 
 
 // This is User Schemas
-
 const UserScema = mongoose.Schema({
   username: {
     type: String,
@@ -64,6 +63,7 @@ const UserScema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User', UserScema);
 
+// Methods for User Schema including create, finding by username, by ID and checking passwords
 module.exports.createUser = function(newUser, callback){
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(newUser.password, salt, function(err, hash) {
