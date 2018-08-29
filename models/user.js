@@ -18,6 +18,48 @@ const UserScema = mongoose.Schema({
   name: {
     type: String
   }
+  facebook:{
+    type: String
+  }
+  twitter:{
+    type: String
+  }
+  instagram:{
+    type: String
+  }
+  youtube:{
+    type: String
+  }
+  linkedin:{
+    type: String
+  }
+  googleplus:{
+    type: String
+  }
+  pinterest:{
+    type: String
+  }
+  tumblr:{
+    type: String
+  }
+  snapchat:{
+    type: String
+  }
+  reddit:{
+    type: String
+  }
+  flickr:{
+    type: String
+  }
+  misc1:{
+    type: String
+  }
+  misc2:{
+    type: String
+  }
+  misc3r:{
+    type: String
+  }
 });
 
 const User = module.exports = mongoose.model('User', UserScema);
