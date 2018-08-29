@@ -90,6 +90,11 @@ passport.use(new LocalStrategy(
     });
 
 
+router.get('/package', function(req, res){
+  res.render('package');
+});
+
+
 router.post(
   '/login',
   passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
@@ -98,6 +103,7 @@ router.post(
   }
 
 );
+
 
 router.get('/logout', function(req, res){
   req.logout();

@@ -64,7 +64,7 @@ app.use(expressValidator({
   }
 }));
 
-// Conenct Flash Middleware
+// Connect Flash Middleware
 app.use(flash());
 
 // Global Variables
@@ -79,9 +79,8 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 
-// Set Port
+// Sets Port
 app.set('port', (process.env.PORT || 3000));
-
 
 app.listen(app.get('port'), function(){
   console.log('Server Started on port ' +app.get('port'));
