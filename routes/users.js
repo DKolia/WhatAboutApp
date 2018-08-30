@@ -45,32 +45,11 @@ router.use(methodOverride('_method'))
 // })
 
 
-////////// DELETE ROUTE //////////////////
-// DETLETE ROUTE NEEDS
-// [X] Find PassportJS's location for IDs
-// [ ] MongoDB Query to Delete based on ID
-//
-// router.delete('/', (req, res) => {
-//   console.log("below is req.session.passports.user");
-//   console.log(req.session.passport.user);
-//   res.send("hello this is delete speaking, check the terminal")
-// })
-
-  // console.log(req.session.passport.user);
-
-// Delete User
+// Delete User Route
 router.delete("/", async (req, res) => {
   const deletedUser = await User.findByIdAndRemove(req.session.passport.user);
   res.redirect("/");
 });
-
-// router.delete("/", function(req, res){
-//   const deletedUser = User.findByIdAndRemove(req.session.passport.user, function(asdf, asdf2){
-//     console.log(asdf);
-//     console.log(asdf2);
-//   });
-//   res.redirect("/");
-// })
 
 
 // Register Route
@@ -125,6 +104,7 @@ router.post('/register', function(req, res){
    }
 });
 
+// PassportJS to help us add login logic, check passwords and more
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.getUserByUsername(username, function(err, user){
@@ -145,11 +125,9 @@ passport.use(new LocalStrategy(
   }));
 
 
-
     passport.serializeUser(function (user, done) {
       done(null, user.id);
     });
-
 
 
     passport.deserializeUser(function (id, done) {
@@ -163,7 +141,6 @@ router.get('/package', function(req, res){
   res.render('package');
 });
 
-
 router.post(
   '/login',
   passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
@@ -172,7 +149,6 @@ router.post(
   }
 
 );
-
 
 router.get('/logout', function(req, res){
   req.logout();

@@ -1,8 +1,8 @@
 <!-- Register Partial -->
 
-
+<!-- Registration logic and exemptions are here, including if username is taken, etc -->
 <h2 class="page-header">Register</h2>
-
+<p>Please register below. While each field is required, we never sell, distribute, or share your information.</p>
 
 {{#if user}}
   <div class="alert alert-danger">Username has been taken already. Try a new one.</div>
@@ -19,7 +19,7 @@
 {{/if}}
 
 
-
+<!-- This is the register form of the app -->
 <form method="post" action="/users/register">
 
 

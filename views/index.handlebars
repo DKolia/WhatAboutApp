@@ -1,13 +1,11 @@
-<h2 class="page-header">Dashboard</h2>
-<p>Welcome to your dashboard!</p>
+<h2 class="page-header">Your Dashboard</h2>
 
 <p>Please fill in as little or as much information as you'd like and click the submit button on the bottom to send the information off. I've included three Misc. spots for phone numbers, favorite foods, or whatever else you may want on the web. On your profile page, you can see  your listings and easily share your Social Media links and information easily.</p>
 
 <br />
 
+<!-- Main form for adding social media entries into User Schema -->
 <form method="post" action="/">
-<!-- method-override in NPM -->
-<!--  -->
 
   <div class="form-group">
     <label>Facebook</label>
@@ -79,12 +77,12 @@
     <input type="text" class="form-control" placeholder="Enter Misc. Info" name="misc3 ">
   </div>
 
-  <button type="submit" class="btn btn-default">Submit</button>
-
-
+  <!-- This Submit button commits the form data into the DB entry -->
+  <button type="submit" class="btn btn-default">Submit Info</button>
 </form>
 
-
+<!-- This Delete button completely deletes the entry in the DB -->
+<br />
 <form method="POST" action="/users?_method=DELETE">
-  <button type="submit" class="btn btn-default">DELETE ACCOUNT</button>
+  <button type="submit" class="btn btn-default">Delete Account</button>
 </form>
