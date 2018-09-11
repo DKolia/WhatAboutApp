@@ -4,8 +4,9 @@
 
 <br />
 
+
 <!-- Main form for adding social media entries into User Schema -->
-<form method="post" action="/">
+<form method="POST" action="/users/package?_method=PUT">
 
   <div class="form-group">
     <label>Facebook</label>
@@ -74,7 +75,7 @@
 
   <div class="form-group">
     <label>Miscellaneous</label>
-    <input type="text" class="form-control" placeholder="Enter Misc. Info" name="misc3 ">
+    <input type="text" class="form-control" placeholder="Enter Misc. Info" name="misc3">
   </div>
 
   <!-- This Submit button commits the form data into the DB entry -->

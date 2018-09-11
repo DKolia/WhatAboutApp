@@ -7,42 +7,19 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 router.use(methodOverride('_method'))
-// [ ] UPDATE route
-// [ ] router.put()
-// [ ] user data will be in req.bod
-// [X] once you get method-override set up correctly
-// [X] see npm.org / method-override
 
 
-
-///// UPDATE ROUTE ////////////////////////////////////
-// Where is PassportJS storing userID
-//
-// Update User
-// router.put("/:id", async (req, res) => {
-// const updatedUser = await Users.findByIdAndUpdate(req.params.id, req.body, {new: true});
-// res.redirect("/user");
-// });
-//
-// Update Package Route
-// router.put('/something', function(req, res){
-//
-//   req.body.
-//   edit;
-//   {key}:{value}
-// });
+router.put("/package", function (req, res) {
+  console.log("above is line 13");
+  console.log(req.session.passport.user);
+  User.findByIdAndUpdate(req.session.passport.user, req.body, function (err, r) {
+    console.log(req.body);
+    console.log(r);
+    res.redirect("/users/packages/" + r.username);
+  });
+});
 
 
-//////////////////////////////////////////////////////
-
-// EDIT route
-  // grab shit from db
-  // render an EJS that looks exactly like index.ejs, passing the data from db to that template
-
-// // Show Package Route
-// router.edit('/something', function(req, res){
-//   something
-// })
 
 
 // Delete User Route
@@ -60,7 +37,8 @@ router.get('/register', function(req, res){
 
 // Login Route
 router.get('/login', function(req, res){
-  res.render('login');
+  res.render('login', {
+  });
 });
 
 
@@ -104,6 +82,7 @@ router.post('/register', function(req, res){
    }
 });
 
+
 // PassportJS to help us add login logic, check passwords and more
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -137,9 +116,20 @@ passport.use(new LocalStrategy(
     });
 
 
-router.get('/package', function(req, res){
-  res.render('package');
+
+
+
+// Route to redirect to unique user's package
+router.get('/packages/:username', function (req, res) {
+    User.findOne({username : req.params.username}, function(err, r) {
+      console.log(r);
+      console.log("This is line 126");
+      res.render('package', r);
+    });
 });
+
+
+
 
 router.post(
   '/login',
@@ -147,7 +137,6 @@ router.post(
   function(req, res) {
     res.redirect('/');
   }
-
 );
 
 router.get('/logout', function(req, res){

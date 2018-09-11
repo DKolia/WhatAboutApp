@@ -7,8 +7,8 @@ router.get('/', ensureAuthenticated, function(req, res){
   res.render('index');
 });
 
-// Gets Uesr Packages page, must be logged in to see/access
-router.get('/users/package', ensureAuthenticated, function(req, res){
+// Gets User Packages page, must be logged in to see/access
+router.get('/users/packages/', ensureAuthenticated, function(req, res){
   res.render('package');
 });
 
