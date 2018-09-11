@@ -6,7 +6,7 @@ Ever talk to someone, but they don't happen to have a Twitter or Facebook? "Well
 
 Simply sign in, create a list of the social networks you want to share, and you will have a single link you can copy and paste so you can be noticed and found.
 
-What about is completely free.
+WhatAbout is also completely free.
 
 ## With WhatAbout
 You'll be able to easily link to your favorite social media. Instead of long-winded introductions on Youtube, you can simply provide this tidy link to ensure maximum exposure.
@@ -16,10 +16,10 @@ WhatAbout is also great for texting as you can post one link for others to inves
 Even better, you can create multiple WhatAbout lists with personal and professional emails. This keeps your personal Instagram and Youtube from popping up on your professional lists which might include links to your portfolio or LinkedIn.
 
 ## Installing
-Nothing to install!
+Installing simply requires an NPM Install. Then kickstart Nodemon and MongoDB in their respective folders to launch your own version of WhatAbout.
 
 ## Made With...
-Html5, Css3, JS, Node.Js, Express, PassportJS, Mustache, Handlebars, MongoDB and Mongoose. Oh, and more than a few NPM Modules.
+HTML5, CSS3, JS, Node.Js, Express, PassportJS, Handlebars, MongoDB, Mongoose and more.
 
 ### Contact
-Feel free to reach out to me, David Kolia via DKolia@icould.com, Github, or LinkedIn. Thank you!
+Feel free to reach out to me, David Kolia via DKolia@iCloud.com, Github, or LinkedIn. Thank you!
